@@ -1,15 +1,13 @@
 package com.example.validation.controller;
 
 
+import com.example.validation.dto.TestDto;
 import com.example.validation.dto.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -59,5 +57,23 @@ public class ApiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb.toString());
         }   // logic
         return ResponseEntity.ok(user);
+    }
+
+
+    @GetMapping("testGet")
+    public TestDto get(@RequestParam(required = false) String name, @RequestParam(required = false) Integer age) {
+        TestDto testDto = new TestDto();
+        testDto.setName(name);
+        testDto.setAge(age);
+
+        int a = 10 +age;
+        return testDto;
+    }
+
+
+    @PostMapping("/testPost")
+    public TestDto post(@Valid @RequestBody TestDto testDto) {
+        System.out.println(testDto);
+        return testDto;
     }
 }
