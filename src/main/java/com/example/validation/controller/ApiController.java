@@ -37,6 +37,7 @@ public class ApiController {
         return ResponseEntity.ok(user);
     }*/
 
+    // BindingResult objectError 메시지 전달하기
     @PostMapping("/user")
     public ResponseEntity user(@Valid @RequestBody UserDto user, BindingResult bindingResult) {
 
@@ -68,7 +69,7 @@ public class ApiController {
         testDto.setName(name);
         testDto.setAge(age);
 
-        int a = 10 +age;
+        int a = 10 + age;
         return testDto;
     }
 
